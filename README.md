@@ -18,7 +18,7 @@ This document describes how to set up Go simple application by executing Ansible
  1. an ansible user was created
  2. ssh keys were generated and propagated
  3. sudo was set for the ansible user to be able to run command as root
- 4. ansible hosts file at /etc/ansible/hosts was provide
+ 4. ansible hosts file at /etc/ansible/hosts was provided
    * look at provided hosts file in main project directory
 
 4. Source code of application is ready under /home/ansible/simple_app.go
