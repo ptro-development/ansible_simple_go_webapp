@@ -1,0 +1,9 @@
+[local]
+master
+
+[application_nodes]
+client001
+client002
+
+[web_nodes]
+master

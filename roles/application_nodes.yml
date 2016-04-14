@@ -1,0 +1,25 @@
+--- # Deploy simple web application in GO to application nodes
+- hosts: application_nodes
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  pre_tasks:
+   - name: create GO directories
+     local_action: file path={{ item }} owner=ansible group=ansible state=directory
+     with_items:
+      - "{{ go_dir }}"
+      - "{{ go_dir }}/src"
+      - "{{ go_dir }}/bin"
+   - name: copy simple web application code to source GO directory
+     local_action: copy src="{{ source_code }}" dest="{{ go_dir }}/src/simple_app.go"
+   - name: install Go language
+     local_action: yum name={{ item }} state=latest
+     with_items:
+      - golang
+      - golang-bin
+   - name: compile simple web application
+     local_action: shell GOBIN="{{ go_dir }}/bin" go install "{{ go_dir }}/src/simple_app.go"
+     tags: compile_app
+  roles:
+   - application_nodes

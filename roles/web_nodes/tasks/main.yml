@@ -1,0 +1,17 @@
+- name: install nginx
+  action: yum name={{ item }} state=latest
+  with_items:
+   - nginx
+  tags: install_nginx
+- name: copy configuration file for Nginx load balancing
+  action: copy src=nginx_default.conf dest=/etc/nginx/conf.d/default.conf backup=yes
+  tags: copy_nginx_config
+- name: start Nginx service
+  action: service name=nginx state=started
+  tags: start_nginx_service
+- name: test service availability 4 times to see nginx load balancing
+  command : curl http://master/
+  register: result
+  with_items: [1, 2, 3, 4]
+  tags: check_app_status
+- debug: var=result

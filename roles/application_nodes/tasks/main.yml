@@ -1,0 +1,26 @@
+- name: install Go language packages
+  action: yum name={{ item }} state=latest
+  with_items:
+   - golang
+   - golang-bin
+  tags: install_go_packages
+- name: create simple_webapp user
+  user: name=simple_webapp state=present
+  tags: create_simple_webapp_user
+- name: deploy simple web application binaries
+  action: copy src="{{ go_dir }}/bin/simple_app" dest=/usr/local/bin/simple_app owner=simple_webapp group=simple_webapp mode=550
+  tags: copy_app_binary
+- name: stop simple application if already running
+  action: command killall simple_app
+  ignore_errors: yes
+  register: result
+  tags: stop_app
+- debug: var=result
+- name: start simple web application
+  action: shell nohup /usr/local/bin/simple_app &
+  tags: start_app
+- name: waiting for simple web application to start
+  wait_for: port=8484 state=started delay=2 timeout=5
+  register: result
+  tags: check_app_status
+- debug: var=result

@@ -1,0 +1,4 @@
+copyright_message: Copyright 2016
+author: Matus Mednansky
+go_dir: /tmp/go
+source_code: /home/ansible/simple_app.go
