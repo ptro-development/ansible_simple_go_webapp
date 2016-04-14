@@ -27,7 +27,7 @@ This document describes how to set up Go simple application by executing Ansible
 # Installation of application nodes
 ```
 cd /home/ansible/sainsbury_simple_go_webapp/roles
-nsible-playbook application_nodes.yml
+ansible-playbook application_nodes.yml
 ```
 
 # Installation of web server node
