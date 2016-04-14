@@ -29,17 +29,7 @@ Requirements before deployment:
 ****************************************
 Ansible hosts file at /etc/ansible/hosts
 ****************************************
-
-[local]
-localhost
-
-[application_nodes]
-client001
-client002
-
-[web_nodes]
-localhost
-
+Look at provided hosts file.
 
 ***************************************
 Installation of application nodes
@@ -64,8 +54,10 @@ Note: Testing is also done as a part of
       web_nodes deployment.
 ***************************************
 
+{code}
 [ansible@master roles]$ for try in `seq 1 4`; do curl http://master/; echo; done
 Hi there, I'm served from client002!
 Hi there, I'm served from client001!
 Hi there, I'm served from client002!
 Hi there, I'm served from client001!
+{code}
