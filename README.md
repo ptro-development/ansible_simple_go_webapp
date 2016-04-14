@@ -1,18 +1,13 @@
 # ansible_simple_go_webapp
 Ansible configuration for deployment of simple web application in writen Go language
 
-*******************************
-Description:
-*******************************
+# Description:
 
 This document describes how to set up Go simple application by executing Ansible modules:
 - application_nodes
 - web_nodes
 
-
-*******************************
-Requirements before deployment:
-*******************************
+# Requirements before deployment:
 
 - ansible was configured on all nodes to be able to execute playbooks agains them
 -- ansible user created
@@ -25,39 +20,31 @@ Requirements before deployment:
 --- client001 & client001
 - source code of application ready under /home/ansible/simple_app.go
 
+# Ansible hosts file at /etc/ansible/hosts
 
-****************************************
-Ansible hosts file at /etc/ansible/hosts
-****************************************
-Look at provided hosts file.
+- look at provided hosts file.
 
-***************************************
-Installation of application nodes
-***************************************
-
+# Installation of application nodes
+,,,
 cd /home/ansible/sainsbury_simple_go_webapp/roles
 nsible-playbook application_nodes.yml
+,,,
 
+# Installation of web node server
 
-***************************************
-Installation of web node server
-***************************************
-
+,,,
 cd /home/ansible/sainsbury_simple_go_webapp/roles
 ansible-playbook web_nodes.yml
+,,,
 
+# Testing
 
-***************************************
-Testing
+Note: Testing is also done as a part of web_nodes deployment.
 
-Note: Testing is also done as a part of
-      web_nodes deployment.
-***************************************
-
-{code}
+,,,
 [ansible@master roles]$ for try in `seq 1 4`; do curl http://master/; echo; done
 Hi there, I'm served from client002!
 Hi there, I'm served from client001!
 Hi there, I'm served from client002!
 Hi there, I'm served from client001!
-{code}
+,,,
