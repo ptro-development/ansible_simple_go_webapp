@@ -8,17 +8,16 @@ This document describes how to set up Go simple application by executing Ansible
 - web_nodes
 
 # Requirements before deployment:
-
 - ansible was configured on all nodes to be able to execute playbooks agains them
--- ansible user created
--- ssh-keys generated and propagated
--- sudo set for ansible user to be able to run command as root
+> ansible user created
+> ssh-keys generated and propagated
+> sudo set for ansible user to be able to run command as root
 - the web Centos_6 available to run Nginx
--- name: master
+> name: master
 - the application Centos_6 servers available to run simple go application
--- names:
---- client001
---- client001
+> names:
+>  client001
+>  client001
 - source code of application ready under /home/ansible/simple_app.go
 
 # Ansible hosts file at /etc/ansible/hosts
